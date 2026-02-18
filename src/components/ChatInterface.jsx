@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect,Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SendBirdProvider,Channel,ChannelList } from '@sendbird/uikit-react';
 // import GroupChannelList from '@sendbird/uikit-react/GroupChannelList';
 // import GroupChannel from '@sendbird/uikit-react/GroupChannel';
@@ -52,6 +52,4 @@ function ChatInterface({ userId, user, appId }) {
     </div>
   );
 }
-
-
 export default ChatInterface;
