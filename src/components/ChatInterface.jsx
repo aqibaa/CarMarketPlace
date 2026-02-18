@@ -3,15 +3,17 @@ import React, { useState, useEffect,Suspense } from 'react';
 import { SendBirdProvider,Channel,ChannelList } from '@sendbird/uikit-react';
 // import GroupChannelList from '@sendbird/uikit-react/GroupChannelList';
 // import GroupChannel from '@sendbird/uikit-react/GroupChannel';
-import '@sendbird/uikit-react/dist/index.css'; 
-import { useSearchParams } from 'next/navigation'; 
+import '@sendbird/uikit-react/dist/index.css';
+import { useSearchParams } from 'next/navigation';
+export const dynamic = "force-dynamic";
 
-function ChatInterfaceComp({ userId, user, appId }) {
-  
-  const searchParams = useSearchParams(); 
+
+function ChatInterface({ userId, user, appId }) {
+
+  const searchParams = useSearchParams();
   const [currentChannelUrl, setCurrentChannelUrl] = useState(null);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     const channelUrl = searchParams.get('channel_url');
     if (channelUrl) {
       setCurrentChannelUrl(channelUrl);
@@ -20,44 +22,36 @@ function ChatInterfaceComp({ userId, user, appId }) {
 
   return (
     <div style={{ width: '100%', height: '85vh' }}>
-      <SendBirdProvider 
-        appId={appId} 
-        userId={userId} 
+      <SendBirdProvider
+        appId={appId}
+        userId={userId}
         nickname={user?.nickname}
         profileUrl={user?.imageUrl}
         allowProfileEdit={true}
       >
         <div className='grid grid-cols-1 md:grid-cols-3 h-full border rounded-xl overflow-hidden shadow-lg m-5'>
-                        <div className='p-2 border-r bg-white h-full'>
-                <ChannelList 
-                  activeChannelUrl={currentChannelUrl}
-                    onChannelSelect={(channel) => {
-                        setCurrentChannelUrl(channel?.url)
-                    }}
-                />
-            </div>
-            <div className='md:col-span-2 h-full bg-gray-50'>
-                {currentChannelUrl ? (
-                    <Channel channelUrl={currentChannelUrl} />
-                ) : (
-                    <div className='flex flex-col items-center justify-center h-full text-gray-400 gap-2'>
-                        <h2 className='text-xl'>Select a chat to start messaging</h2>
-                    </div>
-                )}
-            </div>
+          <div className='p-2 border-r bg-white h-full'>
+            <ChannelList
+              activeChannelUrl={currentChannelUrl}
+              onChannelSelect={(channel) => {
+                setCurrentChannelUrl(channel?.url)
+              }}
+            />
+          </div>
+          <div className='md:col-span-2 h-full bg-gray-50'>
+            {currentChannelUrl ? (
+              <Channel channelUrl={currentChannelUrl} />
+            ) : (
+              <div className='flex flex-col items-center justify-center h-full text-gray-400 gap-2'>
+                <h2 className='text-xl'>Select a chat to start messaging</h2>
+              </div>
+            )}
+          </div>
         </div>
       </SendBirdProvider>
     </div>
   );
 }
 
-
-function ChatInterface() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-        <ChatInterfaceComp />
-    </Suspense>
-  )
-}
 
 export default ChatInterface;
