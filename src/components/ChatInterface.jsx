@@ -1,12 +1,12 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,Suspense } from 'react';
 import { SendBirdProvider,Channel,ChannelList } from '@sendbird/uikit-react';
 // import GroupChannelList from '@sendbird/uikit-react/GroupChannelList';
 // import GroupChannel from '@sendbird/uikit-react/GroupChannel';
 import '@sendbird/uikit-react/dist/index.css'; 
 import { useSearchParams } from 'next/navigation'; 
 
-function ChatInterface({ userId, user, appId }) {
+function ChatInterfaceComp({ userId, user, appId }) {
   
   const searchParams = useSearchParams(); 
   const [currentChannelUrl, setCurrentChannelUrl] = useState(null);
@@ -49,6 +49,15 @@ function ChatInterface({ userId, user, appId }) {
       </SendBirdProvider>
     </div>
   );
+}
+
+
+function ChatInterface() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+        <ChatInterfaceComp />
+    </Suspense>
+  )
 }
 
 export default ChatInterface;

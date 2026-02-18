@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Suspense} from 'react'
 import { db } from '@/configs/db';
 import { CarImages, CarListing } from '@/utils/schema';
 import { eq, and } from 'drizzle-orm';
@@ -6,7 +6,8 @@ import CarItem from '@/components/CarItem';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
-async function Search({ searchParams }) {
+async function Searching({ searchParams }) {
+
     const params = await searchParams;
 
     const condition = params.cars;
@@ -62,6 +63,15 @@ async function Search({ searchParams }) {
             </div>
         </>
     )
+}
+
+
+function Search() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+        <Searching />
+    </Suspense>
+  )
 }
 
 export default Search

@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import { CarMakes, Category, FuelType, Transmission, features } from '@/constants/carData'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
@@ -14,7 +14,7 @@ import { useSearchParams } from 'next/navigation';
 import { GetListingDetailById, CreateListing, UpdateListing } from '@/utils';
 
 
-function AddListing() {
+function AddListingContent() {
 
 
 
@@ -329,6 +329,17 @@ function AddListing() {
                 </form>
             </div>
         </div>
+    )
+}
+
+
+
+
+function AddListing() {
+    return (
+        <Suspense fallback={<div className='p-10 text-center'>Loading...</div>}>
+            <AddListingContent />
+        </Suspense>
     )
 }
 
