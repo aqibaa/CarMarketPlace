@@ -68,4 +68,8 @@ npm run dev
 🤝 Contact & Connect
 Designed and Developed by [Your Name]
 LinkedIn: https://www.linkedin.com/in/aaqib-aarif/
+<<<<<<< HEAD
 GitHub: https://github.com/aqibaa
+=======
+GitHub: https://github.com/aqibaa
+>>>>>>> c64f944fa26fc9af4a59ef9835e5e4568e5877ef

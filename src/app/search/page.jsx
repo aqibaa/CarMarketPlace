@@ -5,6 +5,7 @@ import { eq, and } from 'drizzle-orm';
 import CarItem from '@/components/CarItem';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+export const dynamic = "force-dynamic"; 
 
 async function Searching({ searchParams }) {
 

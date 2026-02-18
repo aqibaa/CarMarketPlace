@@ -10,6 +10,7 @@ import Description from '../_components/Description';
 import Features from '../_components/Features';
 import FinancialCalculator from '../_components/FinancialCalculator';
 import MostSearchedCar from '@/components/MostSearchedCar';
+export const dynamic = "force-dynamic"; 
 
 async function ListingDetail({ params }) {
     const { listingId } = await params;
