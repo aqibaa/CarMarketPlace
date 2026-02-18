@@ -2,7 +2,6 @@ import React from 'react'
 import { db } from '@/configs/db';
 import { CarImages, CarListing } from '@/utils/schema';
 import { eq, and, desc } from 'drizzle-orm';
-import Header from '@/components/Header';
 import CarItem from '@/components/CarItem';
 
 export const dynamic = "force-dynamic";
@@ -47,8 +46,7 @@ async function Search({ searchParams }) {
 
   return (
     <div>
-        <Header />
-        
+]        
         <div className='p-16 bg-[#eef0fc] flex justify-center'>
             <h2 className='font-bold text-3xl text-center'>
                 Search Results For: {make ? make : 'All Cars'}
